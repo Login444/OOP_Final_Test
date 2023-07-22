@@ -1,5 +1,6 @@
 package org.example.view;
 
+import org.example.controller.Logger;
 import org.example.controller.ComplexCalculator;
 import org.example.module.ComplexNum;
 
@@ -31,27 +32,43 @@ public class ViewCalculator {
 
     public void run(){
         while (true){
+            Logger log = new Logger();
+            log.startProg();
             System.out.println("Вводим 1-е комплексное число: ");
             ComplexNum num1 = new ComplexNum(setNums1(), setNums2());
+            log.enterFirstArg(num1);
             System.out.println("Вводим 2-е комплексное число: ");
             ComplexNum num2 = new ComplexNum(setNums1(),setNums2());
+            log.enterSecondArg(num2);
             ComplexCalculator calculator = new ComplexCalculator(num1,num2);
             while (true){
                 String cmd = choice("Введите команду (+, -, *, /)");
                 if (cmd.equals("+")){
-                    System.out.println(calculator.sum());
+                    log.operation("+");
+                    ComplexNum result = calculator.sum();
+                    System.out.println(result);
+                    log.operationResult(result);
                     break;
                 }
                 if (cmd.equals("-")){
-                    System.out.println(calculator.subtraction());
+                    log.operation("-");
+                    ComplexNum result = calculator.subtraction();
+                    System.out.println(result);
+                    log.operationResult(result);
                     break;
                 }
                 if (cmd.equals("*")){
-                    System.out.println(calculator.multiple());
+                    log.operation("*");
+                    ComplexNum result = calculator.multiple();
+                    System.out.println(result);
+                    log.operationResult(result);
                     break;
                 }
                 if (cmd.equals("/")){
-                    System.out.println(calculator.division());
+                    log.operation("/");
+                    ComplexNum result = calculator.division();
+                    System.out.println(result);
+                    log.operationResult(result);
                     break;
                 }
 
@@ -60,6 +77,8 @@ public class ViewCalculator {
             if (cmd.equals("Y")){
                 continue;
             }
+            log.finishProg();
+            log.exportLog();
             break;
     }
 }
