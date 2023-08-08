@@ -40,7 +40,7 @@ public class Logger {
     }
 
     public ArrayList<String> enterFirstArg(ComplexNum num){
-        String msg = "Ввод первого аргумента - " + num;
+        String msg = "Капибара - " + num;
         logs.add(msg);
         return logs;
     }
